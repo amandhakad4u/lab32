@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ITMD 4/541 - Lab 3 Tip Calculator </title>
+    <link rel="stylesheet" type="text/css" href="a.css">
+    
+</head>
+<body>
+    <div>
+        
+        <h5>ITMD 4/541 - Lab 3 - Aman Dhakad</h5>
+        <h1>Tip Calculator</h1>
+    <form id="tipForm">
+        <label>Bill Total: </label>
+        <input type="text" id="billTotal">
+        <br><br>
+        <label>Tip (%): </label>
+        <input type="range" id="tipSlider" min="0" max="100" value="20">
+        <br><br>
+        <label>Tip Percentage: </label>
+        <input type="text" id="tipPercentage" disabled>
+        <br><br>
+        <label>Tip Amount: </label>
+        <input type="text" id="tipAmount" disabled>
+        <br><br>
+        <label>Total Bill with Tip: </label>
+        <input type="text" id="totalBillWithTip" disabled>
+    </form>
+</div>
+
+<script>
+    function check() 
+    {
+        const billTotal = parseFloat(document.getElementById('billTotal').value);
+        const tipSlider = parseFloat(document.getElementById('tipSlider').value);
+    
+        if (isNaN(billTotal)) 
+        {
+            alert('Please enter a valid number for Bill Total.');
+            return;
+        }
+    
+        const tipAmount = billTotal * (tipSlider / 100);
+        const totalBillWithTip = billTotal + tipAmount;
+    
+        document.getElementById('tipPercentage').value = tipSlider.toFixed(2) + '%';
+        document.getElementById('tipAmount').value = '$' + tipAmount.toFixed(2);
+        document.getElementById('totalBillWithTip').value = '$' + totalBillWithTip.toFixed(2);
+    }
+    document.getElementById('tipForm').addEventListener('input', check);
+    </script>
+
+</body>
+</html>
